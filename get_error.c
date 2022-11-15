@@ -30,7 +30,6 @@ int get_error(data_shell *datash, int eval)
 			error = error_get_cd(datash);
 		break;
 	}
-
 	if (error)
 	{
 		write(STDERR_FILENO, error, _strlen(error));

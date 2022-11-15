@@ -19,7 +19,6 @@ int (*get_builtin(char *cmd))(data_shell *)
 	};
 
 	int i;
-
 	for (i = 0; builtin[i].name; i++)
 	{
 		if (_strcmp(builtin[i].name, cmd) == 0)
