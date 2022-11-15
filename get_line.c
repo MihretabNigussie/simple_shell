@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * bring_line - assigns the line var for get_line
  * @lineptr: Buffer that store the input str
@@ -56,14 +55,12 @@ ssize_t get_line(char **lineptr, size_t *n, FILE *stream)
 
 	input = 0;
 	buffer = malloc(sizeof(char) * 120);
-
 	if (!buffer == 0)
 		return (-1);
 
 	while (t != '\n')
 	{
 		i = read(STDIN_FILENO, &t, 1);
-
 		if (i == -1 || (i == 0 && input == 0))
 		{
 			free(buffer);
@@ -83,7 +80,6 @@ ssize_t get_line(char **lineptr, size_t *n, FILE *stream)
 	buffer[input] = '\0';
 	bring_line(lineptr, n, buffer, input);
 	retval = input;
-
 	if (i != 0)
 		input = 0;
 
