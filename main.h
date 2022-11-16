@@ -82,6 +82,24 @@ typedef struct r_var_list
  * @name: The name of the command builtin i.e cd, exit, env
  * @f: data type pointer function.
  */
+
+/**
+ * struct alias_s - A new struct defining aliases.
+ * @name: The name of the alias.
+ * @value: The value of the alias.
+ * @next: A pointer to another struct alias_s.
+ */
+typedef struct alias_s
+{
+	char *name;
+	char *value;
+	struct alias_s *next;
+} alias_t;
+
+/* Global aliases linked list */
+alias_t *aliases;
+
+
 typedef struct builtin_s
 {
 	char *name;
@@ -92,6 +110,8 @@ sep_list *add_sep_node_end(sep_list **head, char sep);
 void free_sep_list(sep_list **head);
 line_list *add_line_node_end(line_list **head, char *line);
 void free_line_list(line_list **head);
+alias_t *add_alias_end(alias_t **head, char *name, char *value);
+void free_alias_list(alias_t *head);
 
 /* aux_lists2.c */
 r_var *add_rvar_node(r_var **head, int lvar, char *var, int lval);
@@ -181,6 +201,7 @@ int cd_shell(data_shell *datash);
 
 /* get_builtin */
 int (*get_builtin(char *cmd))(data_shell *datash);
+int shellby_alias(char **args, char __attribute__((__unused__)) **front);
 
 /* _exit.c */
 int exit_shell(data_shell *datash);
